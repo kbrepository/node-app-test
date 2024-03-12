@@ -8,14 +8,11 @@ const app = express();
 const PORT = 3000;
 
 // Set up Handlebars as the view engine
-app.engine('handlebars', exphbs());
+app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 
 // Set up body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/user-input-app', {
@@ -58,6 +55,9 @@ app.post('/submit', (req, res) => {
       res.render('error', { layout: 'main' });
     });
 });
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Start the server
 app.listen(PORT, () => {
