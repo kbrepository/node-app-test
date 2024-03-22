@@ -69,10 +69,27 @@ For deployment on Kubernetes (K8s) on AWS cloud, follow the steps below:
 
 4. Expose the application to the internet using a Load Balancer or Ingress controller.
 
-## License
+## Architecture Diagram
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+                +---------------------------------------------+
+                |                  Internet                   |
+                +---------------------------------------------+
+                                |
+                        Load Balancer
+                                |
+                +---------------------------+
+                |   Kubernetes Cluster      |
+                |   (Master Node, Worker    |
+                |    Nodes, etcd, etc.)     |
+                +---------------------------+
+                        |       |       |
+                 +------+  +------+  +------+
+                 |Node 1|  |Node 2|  |Node 3|
+                 +------+  +------+  +------+
+                 |Docker|  |Docker|  |Docker|
+                 |Container| |Container| |Container|
+                 |  (Pod)  | |  (Pod)  | |  (Pod)  |
+                 +---------+ +---------+ +---------+
+                 |     Application Containers       |
+                 +---------------------------------+
 
----
-
-Feel free to customize the README according to your specific project details and requirements. Let me know if you need further assistance!
